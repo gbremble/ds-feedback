@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- boilerplate -->
+    <meta charset="utf-8" />
+    <title></title>
+
+    <!-- Google Analytics scripts disabled so I don't submit anything
+        <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&amp;l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KNNDBVF');
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-66406865-2', 'auto');
+        ga('send', 'pageview');
+    </script> -->
+
+    <!-- Madcap Flare stylesheet -->
+    <link
+        href="https://help.dudesolutions.com/Content/Resources/Stylesheets/FDBlueStyles.css"
+        rel="stylesheet" type="text/css" />
+
+    <!-- new CSS styles: add to FDBlueStyles.css or place in document head -->
+    <style>
+        /* this will use the system typefaces for all popular operating systems */
+        * {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        /* placeholder for testing */
+        body { 
+            max-width: 62.5em;
+            margin: 0 auto;
+        ;}
+
+        .btn-feedback {
+            display: inline-block;
+            font-weight: 400;
+            color: #ff5c39;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            background-color: transparent;
+            border: 1px solid #ff5c39;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        .btn-feedback:hover {
+            color: #ffffff;
+            background-color: #ff5c39;
+            border-color: #ff5c39;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-feedback:disabled {
+            opacity: .65;
+        }
+
+        .form-group {
+            margin-block-end: 1rem;
+        }
+
+        form label {
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        form .form-check-label {
+            margin-bottom: 0;
+        }
+
+        textarea#reasonForChoice {
+            display: block;
+            height: auto;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            overflow: auto;
+            resize: vertical;
+        }
+    </style>
+
+    <!-- jQuery link added for testing functionality -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+</head>
+
+<!-- JavaScript for feedback form -->
+<script>
+    $(document).ready(function () {
+
+        /* -------------- Feedback -------------- */
+        // runs when user clicks "yes" button
+        $('.feedback-yes').click(function () {
+            // fade out yes/no buttons, fade in thank you message
+            $('.feedback-question').fadeOut(function () {
+                $('.feedback-reason.yes-thanks').fadeIn();
+            });
+
+            // send user response to Google Analytics
+            // ga('send', 'event', 'Feedback - Yes', 'N/A', location.href);
+            // N/A is the default reason the user chose "yes"; there are no user-selectable inputs
+        });
+
+        // runs when user clicks "no" button
+        $('.feedback-no').click(function () {
+            // fade out yes/no buttons, fade in feedback form
+            $('.feedback-question').fadeOut(function () {
+                $('.feedback-reason.no').fadeIn();
+            });
+        });
+
+        // collects "no" feedback and response reason
+        $('#feedback-submit').on('click', function () {
+            // get selected checkboxes, add to array object; get the array values, join them
+            var selectedCheckboxes = $('.optionNo:checked').map(
+                function () {
+                    return this.value;
+                }).get().join(',');
+            var textExplanation = $('#reasonForChoice').val();
+            var reason = 'Chosen: ' + selectedCheckboxes +
+                ". Reason given: " + textExplanation;
+
+            console.log(reason);
+
+            // send user response to Google Analytics
+            // ga('send', 'event', 'Feedback - No', reason, location.href);
+            // ga('send', 'event', 'Feedback - Response', textExplanation, location.href);
+
+            // disable the submit button
+            $('#feedback-submit').attr('disabled', true);
+            // fade in thank you message and present option to email the authors
+            $('.feedback-reason.no-thanks').fadeIn();
+        });
+
+    });
+</script>
+
+<body>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KNNDBVF" height="0"
+            width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- Google Translate button -->
+    <div>
+        <a name="top"></a>
+        <div id="contentBody">
+            <div class="row collapse">
+                <div class="sideContent">
+                    <div style="position:absolute; margin-left:15px; margin-top:-30px"
+                        id="google_translate_element">
+                    </div>
+                    <script type="text/javascript">
+                        function googleTranslateElementInit() {
+                            new google.translate.TranslateElement({
+                                pageLanguage: 'en',
+                                layout: google.translate.TranslateElement
+                                    .InlineLayout.SIMPLE,
+                                gaTrack: true,
+                                gaId: 'UA-66406865-2'
+                            }, 'google_translate_element');
+                        }
+                    </script>
+                    <script type="text/javascript"
+                        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+                    </script>
+                    <MadCap:topicToolbarProxy style="margin-top: -55px;" />
+                    <MadCap:menuProxy style="mc-context-sensitive: True;"
+                        data-mc-skin="/Project/Skins/SideMenu.flskn" />
+                </div>
+                <MadCap:bodyProxy />
+            </div>
+        </div>
+    </div>
+
+    <!-- feedback survey -->
+    <div id="feedback-survey">
+        <h3 class="tableofcontents">Did you find this helpful?</h3>
+        <!-- yes and no buttons -->
+        <div class="feedback-question">
+            <a class="feedback-button feedback-yes" href="javascript:void(0)"
+                title="Yes, this article was helpful."
+                alt="Yes, this article was helpful.">Yes</a>
+            <a class="feedback-button feedback-no" href="javascript:void(0)"
+                title="No, this article wasn't helpful."
+                alt="No, this article wasn't helpful.">No</a>
+        </div>
+
+        <!-- feedback if article wasn't helpful -->
+        <div class="feedback-reason no">
+            <hr />
+            <div>
+                <h2>Sorry about that!</h2>
+                <h4>
+                    <span style="color: #4b4f54;">
+                        Why wasn’t this helpful? (check all that apply)
+                    </span>
+                </h4>
+                <!-- feedback form -->
+                <form>
+                    <div class="form-group">
+                        <div class="feedback-option">
+                            <input type="checkbox" class="optionNo" id="notFound"
+                                value="Couldn't find what I was looking for"
+                                data-analytics-label="Could not find" />
+                            <label class="form-check-label" for="notFound">I couldn’t find what I was looking
+                                for</label>
+                        </div>
+                        <div class="feedback-option">
+                            <input type="checkbox" class="optionNo" id="unclear"
+                                value="Instructions confusing or unclear"
+                                data-analytics-label="Confusing or unclear" />
+                            <label class="form-check-label" for="unclear">The instructions were confusing or
+                                unclear</label>
+                        </div>
+                        <div class="feedback-option">
+                            <input type="checkbox" class="optionNo" id="didNotWork"
+                                value="Instructions didn't work"
+                                data-analytics-label="Did not work" />
+                            <label class="form-check-label" for="didNotWork">The instructions didn’t work for
+                                me</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reasonForChoice">Let us know what to fix:</label><br>
+                        <textarea type="text" id="reasonForChoice" name="reasonForChoice"
+                            rows="3" cols="56"></textarea>
+                    </div>
+                    <button type="button" class="btn-feedback" id="feedback-submit">Submit
+                        Feedback</button>
+                </form>
+                <!-- end feedback form -->
+
+                <!-- post feedback form "thank you" message -->
+                <div class="feedback-reason no-thanks">
+                    <p>&#160;</p>
+                    <p style="color: #4b4f54;"><b>Thanks for your feedback.</b>
+                    </p>
+                    <h4 class="small_space">Want to tell us more?</h4>
+                    <p><a href="mailto:support@dudesolutions.com;csc-content@dudesolutions.com?subject=Help Site Feedback"
+                            target="_blank">Send an email</a> to the authors with more
+                        information.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- feedback if article was helpful -->
+        <div class="feedback-reason yes-thanks">
+            <hr />
+            <h2>Great!</h2>
+            <p>Thanks for taking the time to give us some feedback.</p>
+        </div>
+        <p>&#160;</p>
+    </div>
+
+    <p>
+        <a href="#top">Back to Top</a>
+    </p>
+    <p>&#160;</p>
+    <!-- page footer -->
+    <div class="footer">
+        <div class="row outer-row">
+            <div class="small-12 medium-3 columns"><a href="http://www.dudesolutions.com/"
+                    target="_blank"><img
+                        src="../Images/2018 Brand Elements/DudeSolutions_Logo_full-length_cmyk-01.png"
+                        style="vertical-align: bottom;" /></a>
+            </div>
+            <div class="floatright"
+                style="font-size: 10pt;color: #0076be;text-align: right;margin-bottom: 0;margin-top: 0;line-height: 17px;">
+                <b style="font-size: 12pt;color: #003d4c;">Questions? Contact Client
+                    Services</b>
+                <br style="font-size: 12pt;color: #003d4c;" /><span
+                    style="color: #ffffff;"><span style="font-size: 12pt;"><span
+                            style="color: #003d4c;">Phone: 1-877-655-DUDE
+                            (3833)</span></span></span>
+                <br style="font-size: 12pt;color: #003d4c;" /><span
+                    style="color: #ffffff;"><span style="font-size: 12pt;"><span
+                            style="color: #003d4c;">Email: </span></span></span><a
+                    href="mailto:support@dudesolutions.com"><a
+                        href="mailto:support@dudesolutions.com"
+                        style="text-decoration: underline;font-size: 12pt;color: #003d4c;"
+                        target="_blank">support@dudesolutions.com</a></a>
+            </div>
+            <p>&#160;</p>
+            <p style="text-align: center;"><span
+                    style="font-size: 11pt; color: #003d4c;">All Rights Reserved � 2020 by
+                    Dude Solutions, Inc. | <a href="https://dudesolutions.com/terms"
+                        target="_blank" style="color: #003d4c;">Terms Of Use</a> | <a
+                        href="https://dudesolutions.com/privacy" target="_blank"
+                        style="color: #003d4c;">Privacy Statement</a></span>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
