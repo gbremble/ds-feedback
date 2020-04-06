@@ -6,7 +6,6 @@
     <meta charset="utf-8" />
     <title></title>
 
-    <!-- Google Analytics scripts disabled so I don't submit anything
         <script>
         (function (w, d, s, l, i) {
             w[l] = w[l] || [];
@@ -38,7 +37,7 @@
 
         ga('create', 'UA-66406865-2', 'auto');
         ga('send', 'pageview');
-    </script> -->
+    </script>
 
     <!-- Madcap Flare stylesheet -->
     <link
@@ -49,7 +48,7 @@
     <style>
         /* this will use the system typefaces for all popular operating systems */
         * {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-family: Helvetica, Arial, sans-serif;
         }
 
         /* placeholder for testing */
@@ -155,17 +154,18 @@
             var selectedCheckboxes = $('.optionNo:checked').map(
                 function () {
                     return this.value;
-                }).get().join(',');
+                }).get();
+
+            console.log(selectedCheckboxes);
+            $.each(selectedCheckboxes, function(index, value) {
+                console.log(value);
+                // ga('send', 'event', 'Feedback - No', value, location.href);
+            });
             var textExplanation = $('#reasonForChoice').val();
-            var reason = 'Chosen: ' + selectedCheckboxes +
-                ". Reason given: " + textExplanation;
 
-            console.log(reason);
-
+            console.log(textExplanation);
             // send user response to Google Analytics
-            // ga('send', 'event', 'Feedback - No', reason, location.href);
             // ga('send', 'event', 'Feedback - Response', textExplanation, location.href);
-
             // disable the submit button
             $('#feedback-submit').attr('disabled', true);
             // fade in thank you message and present option to email the authors
@@ -240,21 +240,21 @@
                     <div class="form-group">
                         <div class="feedback-option">
                             <input type="checkbox" class="optionNo" id="notFound"
-                                value="Couldn't find what I was looking for"
+                                value="Could not find"
                                 data-analytics-label="Could not find" />
                             <label class="form-check-label" for="notFound">I couldn’t find what I was looking
                                 for</label>
                         </div>
                         <div class="feedback-option">
                             <input type="checkbox" class="optionNo" id="unclear"
-                                value="Instructions confusing or unclear"
+                                value="Confusing or unclear"
                                 data-analytics-label="Confusing or unclear" />
                             <label class="form-check-label" for="unclear">The instructions were confusing or
                                 unclear</label>
                         </div>
                         <div class="feedback-option">
                             <input type="checkbox" class="optionNo" id="didNotWork"
-                                value="Instructions didn't work"
+                                value="Did not work"
                                 data-analytics-label="Did not work" />
                             <label class="form-check-label" for="didNotWork">The instructions didn’t work for
                                 me</label>
