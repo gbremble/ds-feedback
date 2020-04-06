@@ -27,7 +27,7 @@ $(document).ready(function () {
                 return this.value;
             }).get();
         $.each(selectedCheckboxes, function (index, value) {
-            ga('send', 'event', 'Feedback - No', response, location.href);
+            ga('send', 'event', 'Feedback - No', value, location.href);
         });
 
         // get the value of the textarea and set as a variable
