@@ -157,20 +157,15 @@
                 }).get();
 
             console.log(selectedCheckboxes);
-
             $.each(selectedCheckboxes, function(index, value) {
                 console.log(value);
-                // ga('send', 'event', 'Feedback - No', response, location.href);
+                // ga('send', 'event', 'Feedback - No', value, location.href);
             });
-
             var textExplanation = $('#reasonForChoice').val();
 
             console.log(textExplanation);
-
             // send user response to Google Analytics
-            // ga('send', 'event', 'Feedback - No', reason, location.href);
             // ga('send', 'event', 'Feedback - Response', textExplanation, location.href);
-
             // disable the submit button
             $('#feedback-submit').attr('disabled', true);
             // fade in thank you message and present option to email the authors
