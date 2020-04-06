@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- feedback survey -->
+    <div id="feedback-survey">
+        <h3 class="tableofcontents">Did you find this helpful?</h3>
+        <!-- yes and no buttons -->
+        <div class="feedback-question">
+            <a class="feedback-button feedback-yes" href="javascript:void(0)"
+                title="Yes, this article was helpful."
+                alt="Yes, this article was helpful.">Yes</a>
+            <a class="feedback-button feedback-no" href="javascript:void(0)"
+                title="No, this article wasn't helpful."
+                alt="No, this article wasn't helpful.">No</a>
+        </div>
+
+        <!-- feedback if article wasn't helpful -->
+        <div class="feedback-reason no">
+            <hr />
+            <div>
+                <h2>Sorry about that!</h2>
+                <h4>
+                    <span style="color: #4b4f54;">
+                        Why wasn’t this helpful? (check all that apply)
+                    </span>
+                </h4>
+                <!-- feedback form -->
+                <form>
+                    <div class="form-group">
+                        <div class="feedback-option">
+                            <input type="checkbox" class="optionNo" id="notFound"
+                                value="Couldn't find what I was looking for"
+                                data-analytics-label="Could not find" />
+                            <label class="form-check-label" for="notFound">I couldn’t find
+                                what I was looking
+                                for</label>
+                        </div>
+                        <div class="feedback-option">
+                            <input type="checkbox" class="optionNo" id="unclear"
+                                value="Instructions confusing or unclear"
+                                data-analytics-label="Confusing or unclear" />
+                            <label class="form-check-label" for="unclear">The instructions
+                                were confusing or
+                                unclear</label>
+                        </div>
+                        <div class="feedback-option">
+                            <input type="checkbox" class="optionNo" id="didNotWork"
+                                value="Instructions didn't work"
+                                data-analytics-label="Did not work" />
+                            <label class="form-check-label" for="didNotWork">The
+                                instructions didn’t work for
+                                me</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reasonForChoice">Let us know what to fix:</label><br>
+                        <textarea type="text" id="reasonForChoice" name="reasonForChoice"
+                            rows="3" cols="56"></textarea>
+                    </div>
+                    <button type="button" class="btn-feedback" id="feedback-submit">Submit
+                        Feedback</button>
+                </form>
+                <!-- end feedback form -->
+
+                <!-- post feedback form "thank you" message -->
+                <div class="feedback-reason no-thanks">
+                    <p>&#160;</p>
+                    <p style="color: #4b4f54;"><b>Thanks for your feedback.</b>
+                    </p>
+                    <h4 class="small_space">Want to tell us more?</h4>
+                    <p><a href="mailto:support@dudesolutions.com;csc-content@dudesolutions.com?subject=Help Site Feedback"
+                            target="_blank">Send an email</a> to the authors with more
+                        information.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- feedback if article was helpful -->
+        <div class="feedback-reason yes-thanks">
+            <hr />
+            <h2>Great!</h2>
+            <p>Thanks for taking the time to give us some feedback.</p>
+        </div>
+        <p>&#160;</p>
+    </div>
+</body>
+
+</html>
