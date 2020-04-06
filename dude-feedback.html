@@ -155,12 +155,18 @@
             var selectedCheckboxes = $('.optionNo:checked').map(
                 function () {
                     return this.value;
-                }).get().join(',');
-            var textExplanation = $('#reasonForChoice').val();
-            var reason = 'Chosen: ' + selectedCheckboxes +
-                ". Reason given: " + textExplanation;
+                }).get();
 
-            console.log(reason);
+            console.log(selectedCheckboxes);
+
+            $.each(selectedCheckboxes, function(index, value) {
+                console.log(value);
+                // ga('send', 'event', 'Feedback - No', response, location.href);
+            });
+
+            var textExplanation = $('#reasonForChoice').val();
+
+            console.log(textExplanation);
 
             // send user response to Google Analytics
             // ga('send', 'event', 'Feedback - No', reason, location.href);
@@ -240,21 +246,21 @@
                     <div class="form-group">
                         <div class="feedback-option">
                             <input type="checkbox" class="optionNo" id="notFound"
-                                value="Couldn't find what I was looking for"
+                                value="Could not find"
                                 data-analytics-label="Could not find" />
                             <label class="form-check-label" for="notFound">I couldn’t find what I was looking
                                 for</label>
                         </div>
                         <div class="feedback-option">
                             <input type="checkbox" class="optionNo" id="unclear"
-                                value="Instructions confusing or unclear"
+                                value="Confusing or unclear"
                                 data-analytics-label="Confusing or unclear" />
                             <label class="form-check-label" for="unclear">The instructions were confusing or
                                 unclear</label>
                         </div>
                         <div class="feedback-option">
                             <input type="checkbox" class="optionNo" id="didNotWork"
-                                value="Instructions didn't work"
+                                value="Did not work"
                                 data-analytics-label="Did not work" />
                             <label class="form-check-label" for="didNotWork">The instructions didn’t work for
                                 me</label>
