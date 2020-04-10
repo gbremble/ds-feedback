@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <title></title>
 
-        <script>
+    <script>
         (function (w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
@@ -52,10 +52,11 @@
         }
 
         /* placeholder for testing */
-        body { 
+        body {
             max-width: 62.5em;
             margin: 0 auto;
-        ;}
+            ;
+        }
 
         .btn-feedback {
             display: inline-block;
@@ -157,7 +158,7 @@
                 }).get();
 
             console.log(selectedCheckboxes);
-            $.each(selectedCheckboxes, function(index, value) {
+            $.each(selectedCheckboxes, function (index, value) {
                 console.log(value);
                 // ga('send', 'event', 'Feedback - No', value, location.href);
             });
@@ -203,9 +204,9 @@
                     <script type="text/javascript"
                         src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
                     </script>
-                    <MadCap:topicToolbarProxy style="margin-top: -55px;" />
+                    <!-- <MadCap:topicToolbarProxy style="margin-top: -55px;" />
                     <MadCap:menuProxy style="mc-context-sensitive: True;"
-                        data-mc-skin="/Project/Skins/SideMenu.flskn" />
+                        data-mc-skin="/Project/Skins/SideMenu.flskn" /> -->
                 </div>
                 <MadCap:bodyProxy />
             </div>
@@ -242,26 +243,29 @@
                             <input type="checkbox" class="optionNo" id="notFound"
                                 value="Could not find"
                                 data-analytics-label="Could not find" />
-                            <label class="form-check-label" for="notFound">I couldn’t find what I was looking
+                            <label class="form-check-label" for="notFound">I couldn’t find
+                                what I was looking
                                 for</label>
                         </div>
                         <div class="feedback-option">
                             <input type="checkbox" class="optionNo" id="unclear"
                                 value="Confusing or unclear"
                                 data-analytics-label="Confusing or unclear" />
-                            <label class="form-check-label" for="unclear">The instructions were confusing or
+                            <label class="form-check-label" for="unclear">The instructions
+                                were confusing or
                                 unclear</label>
                         </div>
                         <div class="feedback-option">
                             <input type="checkbox" class="optionNo" id="didNotWork"
                                 value="Did not work"
                                 data-analytics-label="Did not work" />
-                            <label class="form-check-label" for="didNotWork">The instructions didn’t work for
+                            <label class="form-check-label" for="didNotWork">The
+                                instructions didn’t work for
                                 me</label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="reasonForChoice">Let us know what to fix:</label><br>
+                        <label for="reasonForChoice">Let us know what to fix:</label>
                         <textarea type="text" id="reasonForChoice" name="reasonForChoice"
                             rows="3" cols="56"></textarea>
                     </div>
@@ -272,13 +276,14 @@
 
                 <!-- post feedback form "thank you" message -->
                 <div class="feedback-reason no-thanks">
-                    <p>&#160;</p>
-                    <p style="color: #4b4f54;"><b>Thanks for your feedback.</b>
-                    </p>
+                    <p style="color: #4b4f54;">Thanks for your feedback.</p>
+                </div>
+                <div>
                     <h4 class="small_space">Want to tell us more?</h4>
-                    <p><a href="mailto:support@dudesolutions.com;csc-content@dudesolutions.com?subject=Help Site Feedback"
-                            target="_blank">Send an email</a> to the authors with more
-                        information.</p>
+                    <p>
+                        <a class="email" title="Email the authors" href="javascript:void(0)" onclick="javascript:window.location='mailto:support@dudesolutions.com;csc-content@dudesolutions.com?' + 'subject=Help%20Site%20Feedback&' + 'body=Hello,%0AI%20would%20like%20to%20provide%20feedback%20on%20this%20page: ' + window.location;">Send an email</a> to the authors with more
+                        information.
+                    </p>
                 </div>
             </div>
         </div>
